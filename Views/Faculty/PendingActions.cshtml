@@ -1,0 +1,4 @@
+@{ ViewData["Title"]="Pending Actions"; var periods=ViewBag.Periods as List<Period> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">FACULTY</span><h1>Pending Actions</h1><p>Work that may need your attention</p></div></div>
+<div class="two-col"><div class="panel"><h3>Attendance</h3><p>Mark attendance for an assigned class/subject.</p><a class="primary-btn" asp-action="Attendance">Mark Attendance</a></div><div class="panel"><h3>Marks</h3><p>Add or update assessment marks for students.</p><a class="primary-btn" asp-action="AddMarks">Add Marks</a></div></div>
+<div class="panel"><h3>Assigned Periods</h3>@foreach(var p in periods){<div class="notice"><b>@p.Day — @p.TimeSlot — @p.Subject</b><small>@p.ClassName / @p.Room</small></div>}</div>

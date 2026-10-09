@@ -1,0 +1,11 @@
+@model MultiCollegePortal.Models.MarkEntryViewModel
+@using MultiCollegePortal.Models
+@{ ViewData["Title"]="Add Marks"; var students=ViewBag.Students as List<AppUser> ?? new(); var subjects=ViewBag.Subjects as List<string> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">FACULTY</span><h1>Add Marks</h1><p>Maximum score for Mid1–Mid4 and Lab1–Lab2 is 30.</p></div></div>
+@if(TempData["Success"] != null){<div class="toast success-toast" id="successToast">@TempData["Success"]</div><script>alert("@TempData["Success"]");</script>}
+<div class="form-card"><form asp-action="AddMarks" method="post"><div asp-validation-summary="ModelOnly" class="validation"></div>
+<label>Student</label><select asp-for="StudentId"><option value="">Select student</option>@foreach(var s in students){<option value="@s.Id">@s.RollNumber — @s.FullName</option>}</select>
+<label>Subject</label><select asp-for="Subject"><option value="">Select subject</option>@foreach(var s in subjects){<option value="@s">@s</option>}</select>
+<label>Assessment</label><select asp-for="Assessment"><option value="">Select assessment</option><option>Mid1</option><option>Mid2</option><option>Mid3</option><option>Mid4</option><option>Lab1</option><option>Lab2</option></select>
+<label>Marks (0–30)</label><input asp-for="Score" type="number" min="0" max="30" step="0.5" placeholder="Enter marks out of 30" /><span asp-validation-for="Score" class="validation"></span>
+<button class="primary-btn" type="submit">Save Marks</button></form></div>

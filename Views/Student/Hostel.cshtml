@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Hostel"; var s=ViewBag.Student as AppUser; }
+<div class="page-head"><div><span class="eyebrow">STUDENT</span><h1>Hostel</h1><p>Your hostel allocation</p></div></div>
+<div class="panel">@if(s?.IsHosteller == true){<h3>Hostel accommodation active</h3><div class="detail-grid"><div><span>Status</span><b>Hosteller</b></div><div><span>Room Number</span><b>@s.HostelRoom</b></div></div><p class="muted">Contact the hostel administration for room change, maintenance or leave requests.</p>}else{<h3>Non-hosteller</h3><p>This student is currently not marked as a hosteller.</p>}</div>

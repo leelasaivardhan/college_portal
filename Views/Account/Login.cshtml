@@ -1,0 +1,29 @@
+@model MultiCollegePortal.Models.LoginViewModel
+@using MultiCollegePortal.Models
+@{ ViewData["Title"] = "Login"; }
+<div class="login-page">
+    <div class="login-card">
+        <div class="login-logo">🎓</div>
+        <h2>Login to Your Account</h2>
+        <p class="muted">Select your role and sign in with your registered college credentials.</p>
+        <form asp-action="Login" method="post">
+            <input type="hidden" asp-for="ReturnUrl" />
+            <div asp-validation-summary="ModelOnly" class="validation"></div>
+            <label>Login as</label>
+            <div class="role-tabs">
+                @foreach (var role in Enum.GetValues<UserRole>())
+                {
+                    <label class="role-option"><input type="radio" asp-for="Role" value="@role" /> <span>@role</span></label>
+                }
+            </div>
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" autocomplete="username" placeholder="Enter your registered email" />
+            <span asp-validation-for="Email" class="validation"></span>
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" autocomplete="current-password" placeholder="Enter your password" />
+            <span asp-validation-for="Password" class="validation"></span>
+            <button class="primary-btn login-btn" type="submit">Login</button>
+        </form>
+        <div class="contact-box"><b>New user?</b><br />Please contact your college administration to get your login credentials.</div>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+@{ ViewData["Title"]="Faculty Examination"; var notices=ViewBag.Notices as List<Notice> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">FACULTY</span><h1>Examination</h1><p>Examination announcements</p></div></div><div class="stack">@foreach(var n in notices){<article class="panel"><h3>@n.Title</h3><p>@n.Content</p></article>}</div>

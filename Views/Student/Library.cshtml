@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Library"; var loans=ViewBag.Loans as List<LibraryLoan> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">STUDENT</span><h1>Library</h1><p>Books issued against your college roll number</p></div></div>
+<div class="panel"><table><thead><tr><th>Book</th><th>Code</th><th>Issued</th><th>Returned</th></tr></thead><tbody>@foreach(var x in loans){<tr><td>@x.BookTitle</td><td>@x.BookCode</td><td>@x.IssuedOn.ToString("dd MMM yyyy")</td><td>@(x.ReturnedOn?.ToString("dd MMM yyyy") ?? "Not returned")</td></tr>}</tbody></table></div>

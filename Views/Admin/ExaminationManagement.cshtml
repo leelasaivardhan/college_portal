@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Examination Management"; var notices=ViewBag.Notices as List<Notice> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">ADMIN</span><h1>Examination Management</h1><p>Examination-related notices for the active college.</p></div><a class="primary-btn" asp-action="AddNotice">+ Add Examination Notice</a></div>
+<div class="panel">@foreach(var n in notices){<article class="notice-card"><h3>@n.Title</h3><p>@n.Content</p></article>}</div>

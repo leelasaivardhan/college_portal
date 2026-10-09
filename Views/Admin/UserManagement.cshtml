@@ -1,0 +1,4 @@
+@{ ViewData["Title"]="User Management"; var users=ViewBag.Users as List<AppUser> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">ADMIN</span><h1>User Management</h1><p>Users for the active college</p></div><a class="primary-btn" asp-action="AddUser">+ Add User</a></div>
+@if(TempData["Success"] != null){<div class="toast success-toast">@TempData["Success"]</div>}
+<div class="panel"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Roll Number</th><th>Status</th></tr></thead><tbody>@foreach(var u in users){<tr><td>@u.FullName</td><td>@u.Email</td><td>@u.Role</td><td>@u.RollNumber</td><td>@(u.IsActive?"Active":"Inactive")</td></tr>}</tbody></table></div>

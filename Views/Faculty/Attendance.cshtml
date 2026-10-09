@@ -1,0 +1,11 @@
+@model MultiCollegePortal.Models.AttendanceEntryViewModel
+@using MultiCollegePortal.Models
+@{ ViewData["Title"]="Attendance"; var students=ViewBag.Students as List<AppUser> ?? new(); var subjects=ViewBag.Subjects as List<string> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">FACULTY</span><h1>Mark Attendance</h1><p>Select the subject and record the student's attendance.</p></div></div>
+@if(TempData["Success"] != null){<div class="toast success-toast" id="successToast">@TempData["Success"]</div><script>alert("@TempData["Success"]");</script>}
+<div class="form-card"><form asp-action="Attendance" method="post"><div asp-validation-summary="ModelOnly" class="validation"></div>
+<label>Student</label><select asp-for="StudentId"><option value="">Select student</option>@foreach(var s in students){<option value="@s.Id">@s.RollNumber — @s.FullName</option>}</select>
+<label>Date</label><input asp-for="AttendanceDate" type="date" />
+<label>Subject</label><select asp-for="Subject"><option value="">Select subject</option>@foreach(var s in subjects){<option value="@s">@s</option>}</select>
+<label>Status</label><select asp-for="Present"><option value="true">Present</option><option value="false">Absent</option></select>
+<button class="primary-btn" type="submit">Save Attendance</button></form></div>

@@ -1,0 +1,6 @@
+@model MultiCollegePortal.Models.Period
+@using MultiCollegePortal.Models
+@{ ViewData["Title"]="Add Period"; var faculty=ViewBag.Faculty as List<AppUser> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">ADMIN</span><h1>Add Period</h1><p>Add a period for the selected college and week.</p></div></div>
+@if(TempData["Success"] != null){<div class="toast success-toast">@TempData["Success"]</div>}
+<div class="form-card"><form asp-action="AddPeriod" method="post"><div asp-validation-summary="ModelOnly" class="validation"></div><label>Week Date</label><input asp-for="WeekDate" type="date"/><label>Day</label><select asp-for="Day">@foreach(var d in Enum.GetValues<DayOfWeek>()){<option value="@d">@d</option>}</select><label>Time Slot</label><input asp-for="TimeSlot" placeholder="09:00 - 10:00"/><label>Subject</label><input asp-for="Subject" placeholder="Subject"/><label>Class</label><input asp-for="ClassName" placeholder="CSE IV Year"/><label>Room</label><input asp-for="Room" placeholder="Room 101"/><label>Faculty</label><select asp-for="FacultyId"><option value="">Select faculty</option>@foreach(var f in faculty){<option value="@f.Id">@f.FullName</option>}</select><button class="primary-btn" type="submit">Add Period</button></form></div>

@@ -1,0 +1,5 @@
+@model MultiCollegePortal.Models.AddUserViewModel
+@using MultiCollegePortal.Models
+@{ ViewData["Title"]="Add User"; }
+<div class="page-head"><div><span class="eyebrow">ADMIN</span><h1>Add User</h1><p>Create a student, faculty member or admin for the active college.</p></div></div>
+<div class="form-card"><form asp-action="AddUser" method="post"><div asp-validation-summary="ModelOnly" class="validation"></div><label>Full Name</label><input asp-for="FullName"/><label>Email</label><input asp-for="Email"/><label>Password</label><input asp-for="Password" type="password"/><label>Role</label><select asp-for="Role">@foreach(var r in Enum.GetValues<UserRole>()){<option value="@r">@r</option>}</select><label>Roll Number (student)</label><input asp-for="RollNumber"/><label>Department</label><input asp-for="Department"/><label>Course</label><input asp-for="Course"/><label>Year</label><input asp-for="Year" type="number" min="1" max="6"/><label>Semester</label><input asp-for="Semester" type="number" min="1" max="12"/><button class="primary-btn" type="submit">Create User</button></form></div>

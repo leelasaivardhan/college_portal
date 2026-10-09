@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Notices"; var notices=ViewBag.Notices as List<Notice> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">STUDENT</span><h1>Notices & Events</h1><p>Published by your college administration</p></div></div>
+<div class="stack">@foreach(var n in notices){<article class="panel"><span class="eyebrow">@n.Category</span><h3>@n.Title</h3><p>@n.Content</p><small class="muted">@n.PublishedOn.ToLocalTime().ToString("dd MMM yyyy hh:mm tt")</small></article>}</div>

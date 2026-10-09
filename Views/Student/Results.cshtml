@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Results"; var marks=ViewBag.Marks as List<Mark> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">STUDENT</span><h1>Results</h1><p>Marks added by your faculty</p></div></div>
+<div class="panel"><table><thead><tr><th>Subject</th><th>Assessment</th><th>Score</th><th>Maximum</th><th>Updated</th></tr></thead><tbody>@foreach(var m in marks){<tr><td>@m.Subject</td><td>@m.Assessment</td><td>@m.Score</td><td>@m.MaxScore</td><td>@m.UpdatedOn.ToLocalTime().ToString("dd MMM yyyy")</td></tr>}</tbody></table></div>

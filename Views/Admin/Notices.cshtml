@@ -1,0 +1,5 @@
+@model List<Notice>
+@{ ViewData["Title"]="Manage Notices"; }
+<div class="page-head"><div><span class="eyebrow">ADMIN</span><h1>Manage Content / Notices</h1><p>Content is limited to the currently selected college.</p></div><a class="primary-btn" asp-action="AddNotice">+ Add Notice</a></div>
+@if(TempData["Success"] != null){<div class="toast success-toast">@TempData["Success"]</div>}
+<div class="panel"><table><thead><tr><th>Title</th><th>Category</th><th>Published</th><th>Status</th><th></th></tr></thead><tbody>@foreach(var n in Model){<tr><td>@n.Title</td><td>@n.Category</td><td>@n.PublishedOn.ToLocalTime().ToString("dd MMM yyyy")</td><td>@(n.IsPublished?"Published":"Hidden")</td><td><form asp-action="DeleteNotice" method="post"><input type="hidden" name="id" value="@n.Id"/><button class="danger-btn">Remove</button></form></td></tr>}</tbody></table></div>

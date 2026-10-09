@@ -1,0 +1,21 @@
+@{ ViewData["Title"] = "Student Dashboard"; var college=ViewBag.College as College; var student=ViewBag.Student as AppUser; var notices=ViewBag.Notices as List<Notice> ?? new(); var periods=ViewBag.TodayPeriods as List<Period> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">STUDENT / PARENT</span><h1>Welcome, @student?.FullName!</h1><p>@college?.Name</p></div></div>
+<div class="student-hero">
+    <div><h2>Learning Today, Leading Tomorrow</h2><p>Everything you need for your college journey in one place.</p></div>
+    <div class="hero-timetable"><div class="hero-mini-title">Today's Timetable</div>@if(!periods.Any()){<p class="hero-muted">No periods published for today.</p>} @foreach(var p in periods.Take(4)){<div class="hero-period"><b>@p.TimeSlot</b><span>@p.Subject</span><small>@p.Room</small></div>}</div>
+</div>
+<div class="quick-grid student-grid">
+<a class="quick-card" asp-action="AcademicCalendar"><b>📅</b><span>Academic Calendar</span></a>
+<a class="quick-card" asp-action="Results"><b>📊</b><span>Results</span></a>
+<a class="quick-card" asp-action="Examinations"><b>📝</b><span>Examinations</span></a>
+<a class="quick-card" asp-action="Placements"><b>💼</b><span>Placements</span></a>
+<a class="quick-card" asp-action="FeePayments"><b>💳</b><span>Fee Payments</span></a>
+<a class="quick-card" asp-action="Library"><b>📚</b><span>Library</span></a>
+<a class="quick-card" asp-action="Hostel"><b>🏠</b><span>Hostel</span></a>
+<a class="quick-card" asp-action="Notices"><b>📢</b><span>Notices</span></a>
+<a class="quick-card" asp-action="Downloads"><b>⬇</b><span>Downloads</span></a>
+</div>
+<div class="two-col">
+<section class="panel"><div class="panel-head"><h3>Latest Notices</h3><a asp-action="Notices">View all →</a></div>@foreach(var n in notices){<a class="notice" asp-action="Notices"><b>@n.Title</b><small>@n.PublishedOn.ToLocalTime().ToString("dd MMM yyyy")</small></a>}</section>
+<section class="panel"><div class="panel-head"><h3>Campus Highlights</h3><a asp-action="Academics">Explore academics →</a></div><div class="campus-image"><img src="~/images/college-background.svg" alt="College campus" /></div></section>
+</div>

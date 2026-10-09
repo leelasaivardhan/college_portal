@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Examinations"; var notices=ViewBag.Notices as List<Notice> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">STUDENT</span><h1>Examinations</h1><p>Pending and ongoing examination information</p></div></div>
+<div class="panel">@if(!notices.Any()){<p class="muted">No examination notices are currently published.</p>} @foreach(var n in notices){<article class="notice-card"><h3>@n.Title</h3><p>@n.Content</p><small>@n.PublishedOn.ToLocalTime().ToString("dd MMM yyyy")</small></article>}</div>

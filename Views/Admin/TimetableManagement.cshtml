@@ -1,0 +1,4 @@
+@{ ViewData["Title"]="Timetable Management"; var periods=ViewBag.Periods as List<Period> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">ADMIN</span><h1>Timetable Management</h1><p>Periods for the active college</p></div><a class="primary-btn" asp-action="AddPeriod">+ Add Period</a></div>
+@if(TempData["Success"] != null){<div class="toast success-toast">@TempData["Success"]</div>}
+<div class="panel"><table><thead><tr><th>Week Date</th><th>Day</th><th>Time</th><th>Subject</th><th>Class</th><th>Room</th><th>Faculty</th></tr></thead><tbody>@foreach(var p in periods){<tr><td>@p.WeekDate.ToString("dd MMM yyyy")</td><td>@p.Day</td><td>@p.TimeSlot</td><td>@p.Subject</td><td>@p.ClassName</td><td>@p.Room</td><td>@p.Faculty?.FullName</td></tr>}</tbody></table></div>

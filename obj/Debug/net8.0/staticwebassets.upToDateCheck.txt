@@ -1,0 +1,2 @@
+wwwroot\css\site.css
+wwwroot\images\college-background.svg

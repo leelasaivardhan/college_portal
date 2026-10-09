@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Multi College Portal</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+@if (User.Identity?.IsAuthenticated != true)
+{
+    @RenderBody()
+}
+else
+{
+<header class="topbar">
+    <div class="topbar-left"><button class="menu-toggle" type="button" onclick="toggleMenu()">☰</button><a class="brand" asp-controller="Home" asp-action="Dashboard"><span class="brand-mark">🎓</span><span><strong>Multi College Portal</strong><small>Education • Excellence • Future</small></span></a></div>
+    <div class="user-area"><span class="role-pill">@User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</span><span class="user-name">@User.Identity?.Name</span><a class="logout" asp-controller="Account" asp-action="Logout">Logout</a></div>
+</header>
+<div class="shell">
+<aside class="sidebar" id="sidebar">
+    <a asp-controller="Home" asp-action="Dashboard">🏠 Dashboard</a>
+    @if (User.IsInRole("Student")) {
+        <a asp-controller="Student" asp-action="Academics">🎓 Academics</a>
+        <a asp-controller="Student" asp-action="Examinations">📝 Examinations</a>
+        <a asp-controller="Student" asp-action="Results">📊 Results</a>
+        <a asp-controller="Student" asp-action="Attendance">📈 Attendance</a>
+        <a asp-controller="Student" asp-action="Notices">📢 Notices</a>
+        <a asp-controller="Student" asp-action="Placements">💼 Placements</a>
+        <a asp-controller="Student" asp-action="Library">📚 Library</a>
+        <a asp-controller="Student" asp-action="Hostel">🏠 Hostel</a>
+        <a asp-controller="Student" asp-action="FeePayments">💳 Fee Payments</a>
+        <a asp-controller="Student" asp-action="AcademicCalendar">📅 Academic Calendar</a>
+        <a asp-controller="Student" asp-action="Downloads">⬇ Downloads</a>
+    } else if (User.IsInRole("Faculty")) {
+        <a asp-controller="Faculty" asp-action="AddMarks">➕ Add Marks</a>
+        <a asp-controller="Faculty" asp-action="Attendance">✅ Attendance</a>
+        <a asp-controller="Faculty" asp-action="MyPeriods">📅 My Periods</a>
+        <a asp-controller="Faculty" asp-action="StudentList">👨‍🎓 Student List</a>
+        <a asp-controller="Faculty" asp-action="Notices">📢 Notices</a>
+        <a asp-controller="Faculty" asp-action="Examination">📝 Examination</a>
+        <a asp-controller="Faculty" asp-action="Library">📚 Library</a>
+    } else if (User.IsInRole("Admin")) {
+        <a asp-controller="Admin" asp-action="CollegeManagement">🏫 College Management</a>
+        <a asp-controller="Admin" asp-action="ManageContent">📢 Manage Content</a>
+        <a asp-controller="Admin" asp-action="AddPeriod">📅 Add Period</a>
+        <a asp-controller="Admin" asp-action="TimetableManagement">🗓 Timetable Management</a>
+        <a asp-controller="Admin" asp-action="UserManagement">👥 User Management</a>
+        <a asp-controller="Admin" asp-action="ExaminationManagement">📝 Examination Management</a>
+        <a asp-controller="Admin" asp-action="Reports">📊 Reports</a>
+        <a asp-controller="Admin" asp-action="Dashboard">🔄 Switch College</a>
+    }
+</aside>
+<main class="content">@RenderBody()</main>
+</div>
+}
+<script>
+function toggleMenu(){document.getElementById('sidebar')?.classList.toggle('open');}
+setTimeout(()=>document.querySelectorAll('.toast').forEach(x=>x.classList.add('hide')),3500);
+</script>
+</body>
+</html>

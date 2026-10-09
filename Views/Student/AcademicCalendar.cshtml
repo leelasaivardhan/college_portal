@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Academic Calendar"; var rows=ViewBag.Calendar as List<AcademicCalendarEntry> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">STUDENT</span><h1>Academic Calendar</h1><p>Each academic year is represented by two six-month semesters.</p></div></div>
+<div class="calendar-grid">@foreach(var x in rows){<div class="panel"><span class="eyebrow">@x.SemesterName</span><h3>@x.StartDate.ToString("dd MMM yyyy") – @x.EndDate.ToString("dd MMM yyyy")</h3><p>@x.Description</p></div>}</div>

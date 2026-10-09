@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Student List"; var students=ViewBag.Students as List<AppUser> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">FACULTY</span><h1>Student List</h1><p>Students in your active college</p></div></div>
+<div class="panel"><table><thead><tr><th>Roll Number</th><th>Name</th><th>Course</th><th>Semester</th></tr></thead><tbody>@foreach(var s in students){<tr><td>@s.RollNumber</td><td>@s.FullName</td><td>@s.Course</td><td>@s.Semester</td></tr>}</tbody></table></div>

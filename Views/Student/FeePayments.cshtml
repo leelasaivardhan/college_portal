@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="Fee Payments"; var fees=ViewBag.Fees as List<FeePayment> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">STUDENT</span><h1>Fee Payments</h1><p>Paid and unpaid college fees</p></div></div>
+<div class="panel"><table><thead><tr><th>Fee</th><th>Amount</th><th>Due Date</th><th>Status</th></tr></thead><tbody>@foreach(var f in fees){<tr><td>@f.FeeType</td><td>₹@f.Amount.ToString("N2")</td><td>@f.DueDate.ToString("dd MMM yyyy")</td><td><span class="status @(f.IsPaid?"success":"danger")">@(f.IsPaid?"Paid":"Unpaid")</span></td></tr>}</tbody></table></div>

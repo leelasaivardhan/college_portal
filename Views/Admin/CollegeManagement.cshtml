@@ -1,0 +1,3 @@
+@{ ViewData["Title"]="College Management"; var colleges=ViewBag.Colleges as List<College> ?? new(); }
+<div class="page-head"><div><span class="eyebrow">ADMIN</span><h1>College Management</h1><p>Colleges hosted by this portal</p></div></div>
+<div class="panel"><table><thead><tr><th>College</th><th>Short Name</th><th>Address</th><th>Status</th></tr></thead><tbody>@foreach(var c in colleges){<tr><td>@c.Name</td><td>@c.ShortName</td><td>@c.Address</td><td>@(c.IsActive?"Active":"Inactive")</td></tr>}</tbody></table></div>
